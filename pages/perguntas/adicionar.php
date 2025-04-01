@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         <div class="form-actions">
             <button type="submit" class="btn btn-primary">Salvar Pergunta</button>
-            <a href="listar.php" class="btn btn-secondary">Cancelar</a>
+            <a href="listar.php" class="btn btn-secondary" target="_blank">Cancelar</a>
         </div>
     </form>
 </div>

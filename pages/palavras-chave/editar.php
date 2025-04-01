@@ -11,10 +11,24 @@ if (!isLoggedIn()) {
     redirect('../../login.php');
 }
 
-$pageTitle = "Adicionar Palavra-chave";
+$pageTitle = "Editar Palavra-chave";
 
 $error = '';
 $success = '';
+$id = $_GET['id'] ?? null;
+
+if (!$id) {
+    redirect('listar.php');
+}
+
+// Busca a palavra-chave pelo ID
+$stmt = $pdo->prepare("SELECT * FROM palavras_chave WHERE id = ?");
+$stmt->execute([$id]);
+$palavraChave = $stmt->fetch();
+
+if (!$palavraChave) {
+    redirect('listar.php');
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $palavra = $_POST['palavra'] ?? '';
@@ -22,11 +36,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!empty($palavra) && $pergunta_id) {
         try {
-            $stmt = $pdo->prepare("INSERT INTO palavras_chave (palavra, pergunta_id) VALUES (?, ?)");
-            $stmt->execute([$palavra, $pergunta_id]);
-            $success = 'Palavra-chave adicionada com sucesso!';
+            $stmt = $pdo->prepare("UPDATE palavras_chave SET palavra = ?, pergunta_id = ? WHERE id = ?");
+            $stmt->execute([$palavra, $pergunta_id, $id]);
+            $success = 'Palavra-chave atualizada com sucesso!';
         } catch (Exception $e) {
-            $error = 'Erro ao adicionar a palavra-chave: ' . $e->getMessage();
+            $error = 'Erro ao atualizar a palavra-chave: ' . $e->getMessage();
         }
     } else {
         $error = 'Palavra e pergunta associada são obrigatórias.';
@@ -40,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <div class="container">
-    <h1>Adicionar Nova Palavra-chave</h1>
+    <h1>Editar Palavra-chave</h1>
 
     <?php if ($error): ?>
         <div class="alert alert-danger"><?= $error ?></div>
@@ -53,16 +67,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <form method="POST">
         <div class="form-group">
             <label for="palavra">Palavra *</label>
-            <input type="text" id="palavra" name="palavra" class="form-control" required>
+            <input type="text" id="palavra" name="palavra" class="form-control" value="<?= $palavraChave['palavra'] ?>" required>
         </div>
         
         <div class="form-group">
             <label for="pergunta_id">ID da Pergunta Associada *</label>
-            <input type="number" id="pergunta_id" name="pergunta_id" class="form-control" required>
+            <input type="number" id="pergunta_id" name="pergunta_id" class="form-control" value="<?= $palavraChave['pergunta_id'] ?>" required>
         </div>
         
         <div class="form-actions">
-            <button type="submit" class="btn btn-primary">Salvar Palavra-chave</button>
+            <button type="submit" class="btn btn-primary">Salvar Alterações</button>
             <a href="listar.php" class="btn btn-secondary">Cancelar</a>
         </div>
     </form>

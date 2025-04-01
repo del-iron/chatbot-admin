@@ -19,13 +19,13 @@ include 'includes/header.php'; // Certifique-se de que o arquivo existe
         <nav class="sidebar-nav">
             <ul>
                 <li class="active"><a href="index.php"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-                <li><a href="pages/perguntas/listar.php"><i class="fas fa-question-circle"></i> Perguntas</a></li>
-                <li><a href="pages/palavras-chave/listar.php"><i class="fas fa-key"></i> Palavras-chave</a></li>
+                <li><a href="pages/perguntas/listar.php" target="_blank"><i class="fas fa-question-circle"></i> Perguntas</a></li>
+                <li><a href="pages/palavras-chave/listar.php" target="_blank"><i class="fas fa-key"></i> Palavras-chave</a></li>
                 
                 <?php if (isAdmin()): ?>
                     <li class="menu-divider">Administração</li>
-                    <li><a href="#"><i class="fas fa-users"></i> Usuários</a></li>
-                    <li><a href="#"><i class="fas fa-cog"></i> Configurações</a></li>
+                    <li><a href="#" target="_blank"><i class="fas fa-users"></i> Usuários</a></li>
+                    <li><a href="#" target="_blank"><i class="fas fa-cog"></i> Configurações</a></li>
                 <?php endif; ?>
             </ul>
         </nav>
@@ -121,6 +121,10 @@ include 'includes/header.php'; // Certifique-se de que o arquivo existe
                                     </td>
                                     <td>
                                         <a href="pages/perguntas/editar.php?id=<?= $pergunta['id'] ?>" class="btn btn-sm btn-info">Editar</a>
+                                        <form method="POST" action="pages/perguntas/remover.php" style="display:inline;">
+                                            <input type="hidden" name="id" value="<?= $pergunta['id'] ?>">
+                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja remover esta pergunta?')">Remover</button>
+                                        </form>
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>
