@@ -25,6 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['error_message'] = 'ID da pergunta não fornecido.';
     }
 
-    redirect('../../index.php');
+    // Redireciona de volta para a página de listagem de perguntas
+    redirect('listar.php');
 }
 ?>
