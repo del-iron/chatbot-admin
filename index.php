@@ -13,7 +13,7 @@ include 'includes/header.php'; // Certifique-se de que o arquivo existe
 <div class="dashboard">
     <div class="sidebar">
         <div class="sidebar-header">
-            <h2>Chatbot Admin</h2>
+            <h2>Gerenciador Chatbot</h2>
         </div>
         
         <nav class="sidebar-nav">
@@ -120,11 +120,7 @@ include 'includes/header.php'; // Certifique-se de que o arquivo existe
                                         <?= isset($pergunta['data_envio']) ? date('d/m/Y', strtotime($pergunta['data_envio'])) : 'Data não disponível' ?>
                                     </td>
                                     <td>
-                                        <a href="pages/perguntas/editar.php?id=<?= $pergunta['id'] ?>" class="btn btn-sm btn-info">Editar</a>
-                                        <form method="POST" action="pages/perguntas/remover.php" style="display:inline;">
-                                            <input type="hidden" name="id" value="<?= $pergunta['id'] ?>">
-                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja remover esta pergunta?')">Remover</button>
-                                        </form>
+                                        <!-- Ações removidas -->
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>
