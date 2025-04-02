@@ -1,3 +1,4 @@
+/* Estilo geral do corpo */
 body {
     background-color: #f4f6f9;
     font-family: 'Poppins', sans-serif;
@@ -5,8 +6,9 @@ body {
     padding: 0;
 }
 
+/* Estilo do container principal */
 .container {
-    max-width: 600px;
+    max-width: 1000px;
     margin: 50px auto;
     background: #fff;
     padding: 30px;
@@ -15,6 +17,7 @@ body {
     animation: fadeIn 0.5s ease-in-out;
 }
 
+/* Animação de entrada suave */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -26,6 +29,7 @@ body {
     }
 }
 
+/* Estilo do título principal */
 h1 {
     font-size: 28px;
     margin-bottom: 20px;
@@ -34,6 +38,7 @@ h1 {
     font-weight: 600;
 }
 
+/* Estilo geral dos botões */
 .btn {
     padding: 10px 20px;
     font-size: 14px;
@@ -45,9 +50,10 @@ h1 {
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
+/* Botão primário (azul) */
 .btn-primary {
     background-color: #007bff;
-    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .btn-primary:hover {
@@ -55,15 +61,69 @@ h1 {
     transform: scale(1.05);
 }
 
-.btn-secondary {
-    background-color: #6c757d;
+/* Botão pequeno */
+.btn-sm {
+    padding: 5px 10px;
+    font-size: 12px;
 }
 
-.btn-secondary:hover {
-    background-color: #5a6268;
+/* Botão de edição (azul claro) */
+.btn-info {
+    background-color: #17a2b8;
+    border: 1px solid #138496;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-info:hover {
+    background-color: #138496;
     transform: scale(1.05);
 }
 
+/* Botão de remoção (vermelho) */
+.btn-danger {
+    background-color: #dc3545;
+    border: 1px solid #bd2130;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-danger:hover {
+    background-color: #bd2130;
+    transform: scale(1.05);
+}
+
+/* Estilo das tabelas */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.data-table th, .data-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.data-table th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+    color: #333;
+}
+
+.data-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.data-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Estilo dos alertas */
 .alert {
     padding: 15px;
     margin-bottom: 20px;
@@ -83,49 +143,4 @@ h1 {
     background-color: #d4edda;
     color: #155724;
     border: 1px solid #c3e6cb;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    font-weight: 500;
-    color: #555;
-    display: block;
-    margin-bottom: 8px;
-}
-
-.form-group input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 14px;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.form-group input:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-    outline: none;
-}
-
-.form-actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 20px;
-}
-
-.form-actions .btn {
-    flex: 1;
-    margin: 0 5px;
-}
-
-small.text-muted {
-    font-size: 12px;
-    color: #6c757d;
-    display: block;
-    margin-top: 5px;
 }

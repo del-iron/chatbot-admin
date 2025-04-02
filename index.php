@@ -120,7 +120,11 @@ include 'includes/header.php'; // Certifique-se de que o arquivo existe
                                         <?= isset($pergunta['data_envio']) ? date('d/m/Y', strtotime($pergunta['data_envio'])) : 'Data não disponível' ?>
                                     </td>
                                     <td>
-                                        <!-- Ações removidas -->
+                                        <a href="pages/perguntas/editar.php?id=<?= $pergunta['id'] ?>" class="btn btn-sm btn-info" target="_blank">Editar</a>
+                                        <form method="POST" action="pages/perguntas/remover.php" style="display:inline;">
+                                            <input type="hidden" name="id" value="<?= $pergunta['id'] ?>">
+                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja remover esta pergunta?')">Remover</button>
+                                        </form>
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>
