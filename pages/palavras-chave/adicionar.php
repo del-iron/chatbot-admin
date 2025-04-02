@@ -22,6 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!empty($palavra) && $pergunta_id) {
         try {
+            // Insere a palavra-chave no banco de dados
             $stmt = $pdo->prepare("INSERT INTO palavras_chave (palavra, pergunta_id) VALUES (?, ?)");
             $stmt->execute([$palavra, $pergunta_id]);
             $success = 'Palavra-chave adicionada com sucesso!';

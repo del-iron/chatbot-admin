@@ -38,6 +38,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = 'Pergunta e resposta são obrigatórias.';
     }
 }
+
+// Função para gerar palavras-chave únicas
+function gerarPalavrasChave($texto) {
+    global $pdo;
+
+    // Remove pontuações e transforma o texto em palavras únicas
+    $palavras = array_unique(array_filter(explode(' ', preg_replace('/[^\w\s]/u', '', strtolower($texto)))));
+
+    // Busca palavras-chave já existentes no banco de dados
+    $stmt = $pdo->query("SELECT palavra FROM palavras_chave");
+    $palavrasExistentes = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+    // Remove palavras já existentes
+    $palavrasUnicas = array_diff($palavras, $palavrasExistentes);
+
+    return implode(', ', $palavrasUnicas);
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -78,6 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="palavras_chave">Palavras-chave (opcional)</label>
             <input type="text" id="palavras_chave" name="palavras_chave" class="form-control">
             <small class="text-muted">Separe as palavras-chave por vírgula. Ex: login, acesso, senha</small>
+            <button type="button" class="btn btn-secondary" onclick="gerarPalavras()">Gerar Palavras-chave</button>
         </div>
         
         <div class="form-actions">
@@ -86,6 +104,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </form>
 </div>
+
+<script>
+    function gerarPalavras() {
+        const pergunta = document.getElementById('pergunta').value;
+        if (!pergunta) {
+            alert('Por favor, preencha a pergunta antes de gerar palavras-chave.');
+            return;
+        }
+
+        fetch('gerar_palavras_chave.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ texto: pergunta })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                document.getElementById('palavras_chave').value = data.palavras;
+            } else {
+                alert(data.message || 'Erro ao gerar palavras-chave.');
+            }
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            alert('Erro ao gerar palavras-chave.');
+        });
+    }
+</script>
+
 <?php include '../../includes/footer.php'; ?>
 </body>
 </html>
