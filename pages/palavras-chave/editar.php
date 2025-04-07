@@ -77,9 +77,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         <div class="form-actions">
             <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+            <button type="button" class="btn btn-secondary" onclick="limparCampos()">Limpar</button>
             <a href="listar.php" class="btn btn-secondary">Cancelar</a>
         </div>
     </form>
 </div>
+
+<script>
+    function limparCampos() {
+        // Limpa os valores dos campos de entrada
+        document.getElementById('palavra').value = '';
+        document.getElementById('pergunta_id').value = '';
+    }
+</script>
 
 <?php include '../../includes/footer.php'; ?>

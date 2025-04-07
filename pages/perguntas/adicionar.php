@@ -100,6 +100,7 @@ function gerarPalavrasChave($texto) {
         
         <div class="form-actions">
             <button type="submit" class="btn btn-primary">Salvar Pergunta</button>
+            <button type="button" class="btn btn-secondary" onclick="limparCampos()">Limpar</button>
             <a href="listar.php" class="btn btn-secondary" target="_blank">Cancelar</a>
         </div>
     </form>
@@ -130,6 +131,14 @@ function gerarPalavrasChave($texto) {
             console.error('Erro:', error);
             alert('Erro ao gerar palavras-chave.');
         });
+    }
+
+    function limparCampos() {
+        // Limpa os valores dos campos de entrada e textarea
+        document.getElementById('pergunta').value = '';
+        document.getElementById('resposta').value = '';
+        document.getElementById('contexto').value = '';
+        document.getElementById('palavras_chave').value = '';
     }
 </script>
 
