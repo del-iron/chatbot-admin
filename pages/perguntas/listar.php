@@ -26,9 +26,9 @@ $perguntas = getAllPerguntas(); // Função já definida em includes/functions.p
     <h1>Lista de Perguntas</h1>
     <div class="actions">
         <!-- Botão para adicionar nova pergunta -->
-        <a href="adicionar.php" class="btn btn-primary" onclick="abrirNovaAba('adicionar.php')">Adicionar Nova Pergunta</a>
+        <a href="adicionar.php" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Adicionar Nova Pergunta</a>
         <!-- Botão para upload de JSON -->
-        <a href="upload_json.php" class="btn btn-secondary" onclick="abrirNovaAba('upload_json.php')">Upload de JSON</a>
+        <a href="upload_json.php" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Upload de JSON</a>
     </div>
     <table class="data-table">
         <thead>

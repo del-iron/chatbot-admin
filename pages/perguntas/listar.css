@@ -19,8 +19,9 @@ h1 {
 }
 
 .btn {
-    padding: 10px 15px;
-    font-size: 14px;
+    padding: 20px 20px; /* Aumenta o tamanho interno do botão */
+    font-size: 14px; /* Ajusta o tamanho do texto */
+    min-width: 150px; /* Define uma largura mínima para o botão */
     border: none;
     border-radius: 4px;
     cursor: pointer;
