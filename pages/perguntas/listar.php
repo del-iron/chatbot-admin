@@ -24,7 +24,12 @@ $perguntas = getAllPerguntas(); // Função já definida em includes/functions.p
 
 <div class="container">
     <h1>Lista de Perguntas</h1>
-    <a href="adicionar.php" class="btn btn-primary">Adicionar Nova Pergunta</a>
+    <div class="actions">
+        <!-- Botão para adicionar nova pergunta -->
+        <a href="adicionar.php" class="btn btn-primary" onclick="abrirNovaAba('adicionar.php')">Adicionar Nova Pergunta</a>
+        <!-- Botão para upload de JSON -->
+        <a href="upload_json.php" class="btn btn-secondary" onclick="abrirNovaAba('upload_json.php')">Upload de JSON</a>
+    </div>
     <table class="data-table">
         <thead>
             <tr>
@@ -54,7 +59,7 @@ $perguntas = getAllPerguntas(); // Função já definida em includes/functions.p
                     ?>
                 </td>
                 <td>
-                    <a href="editar.php?id=<?= $pergunta['id'] ?>" class="btn btn-sm btn-info" target="_blank">Editar</a>
+                    <a href="editar.php?id=<?= $pergunta['id'] ?>" class="btn btn-sm btn-info" target="_blank" rel="noopener noreferrer">Editar</a>
                     <form method="POST" action="remover.php" style="display:inline;">
                         <input type="hidden" name="id" value="<?= $pergunta['id'] ?>">
                         <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja remover esta pergunta?')">Remover</button>
@@ -65,5 +70,11 @@ $perguntas = getAllPerguntas(); // Função já definida em includes/functions.p
         </tbody>
     </table>
 </div>
+
+<script>
+    function abrirNovaAba(url) {
+        window.open(url, '_blank');
+    }
+</script>
 
 <?php include '../../includes/footer.php'; ?>

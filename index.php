@@ -91,6 +91,11 @@ include 'includes/header.php'; // Certifique-se de que o arquivo existe
                 </div>
             </div>
             
+            <div class="actions-container">
+                <h2>Ações Rápidas</h2>
+                <a href="pages/perguntas/upload_json.php" class="btn btn-primary">Upload de JSON</a>
+            </div>
+            
             <div class="recent-questions">
                 <div class="card">
                     <div class="card-header">
