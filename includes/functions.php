@@ -44,16 +44,6 @@ function addPergunta($pergunta, $resposta, $contexto) {
     global $pdo;
 
     try {
-        // Verifica se a pergunta já existe
-        $stmt = $pdo->prepare("SELECT COUNT(*) FROM perguntas_respostas WHERE pergunta = ?");
-        $stmt->execute([$pergunta]);
-        $exists = $stmt->fetchColumn();
-
-        if ($exists > 0) {
-            throw new Exception('A pergunta já existe no banco de dados.');
-        }
-
-        // Insere a nova pergunta
         $stmt = $pdo->prepare("INSERT INTO perguntas_respostas (pergunta, resposta, contexto) VALUES (?, ?, ?)");
         $stmt->execute([$pergunta, $resposta, $contexto]);
         return $pdo->lastInsertId();

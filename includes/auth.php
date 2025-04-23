@@ -14,17 +14,6 @@ function isLoggedIn() {
 function login($email, $password) {
     global $pdo;
 
-    // Usuário e senha padrão
-    $defaultEmail = 'admin@chatbot.com';
-    $defaultPassword = '123456';
-
-    if ($email === $defaultEmail && $password === $defaultPassword) {
-        $_SESSION['user_id'] = 0; // ID fictício para o usuário padrão
-        $_SESSION['user_name'] = 'Administrador';
-        $_SESSION['user_type'] = 'admin';
-        return true;
-    }
-
     $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE email = ?");
     $stmt->execute([$email]);
     $user = $stmt->fetch();

@@ -35,10 +35,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $palavrasChave = $item['palavras_chave'] ?? '';
 
                 if (!empty($pergunta) && !empty($resposta)) {
-                    $perguntaId = addPergunta($pergunta, $resposta, $contexto);
+                    try {
+                        $perguntaId = addPergunta($pergunta, $resposta, $contexto);
 
-                    if (!empty($palavrasChave)) {
-                        addPalavrasChave($perguntaId, $palavrasChave);
+                        if (!empty($palavrasChave)) {
+                            addPalavrasChave($perguntaId, $palavrasChave);
+                        }
+                    } catch (Exception $e) {
+                        $error = 'Erro ao adicionar a pergunta: ' . $e->getMessage();
                     }
                 }
             }
